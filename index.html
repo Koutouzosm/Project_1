@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Movie App</title>
+</head>
+
+<body class="bdyImg">
+
+
+  <h1 class="text-center colorCard">Movie App</h1>
+
+  <!-- left column search area -->
+  <main class="container-fluid text-center" id="maincss">
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <div class="card cardCss">
+          <h4 class="card-header">
+            Movie Search
+          </h4>
+          <form class="card-body text-center">
+            <form id="search-form">
+              <div class="form-group text-center">
+                <label for="search-input">Searh by Movie title, Actor, or Quote</label>
+                <input class="form-control" type="text" id="user-input" placeholder="Movie title, Actor, Quote" />
+                <button type="button" id="search-button" class="btn btn-primary btn-lg btn-block">Search</button>
+
+                <div class="btn-group dropright" id="dropButton">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Dropright
+                  </button>
+                  <div class="dropdown-menu">
+                    <!-- Dropdown menu links -->
+                  </div>
+                </div>
+
+              </div>
+            </form>
+        </div>
+      </div>
+
+
+      <!-- right section this section is the result endpoint -->
+      <section class="col-12 col-md-6">
+        <div class="card movieInfo text-light">
+          <h4 class="card-header" id="movie-title">
+          </h4>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 divImg" id="movie-display">
+
+              </div>
+              <div class="col-6" id="data-display">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary" id="rec-button">Go somewhere</a>
+          </div>
+        </div>
+
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
