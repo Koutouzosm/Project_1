@@ -1,6 +1,3 @@
-// var rapidAPI = "7ba93ae7bfmsh489625be869c93bp1fc810jsne3c26e878543";
-  //genreSearch holds formatted version of genre0
-  //recString holds converted value for genre for omdb value of genre stores in genreSearch
   $(document).ready(function(){
 
     var genreSearch = ""
@@ -15,7 +12,7 @@
       $("#movie-title, #movie-display, #data-display").empty();
       var movie = $("#user-input").val();
   
-      var queryURL = "http://www.omdbapi.com/?t=" + movie + "&apikey=d62e414d";
+      var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=d62e414d";
   
       $.ajax({
           url: queryURL,
