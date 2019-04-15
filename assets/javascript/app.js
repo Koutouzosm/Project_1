@@ -75,7 +75,7 @@
               rtP,
           );
   
-          //image
+          //image+
           //title
           //var rt
           //x3
@@ -85,7 +85,7 @@
           // /discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc
           //  https://api.themoviedb.org/3/movie/550?api_key=7bc99c9ee75ec56de6b188d9007199dc+
           //once we got it goin, nix the button and make it fluid movement
-          //take top three results and append to card on right for recommendations
+          //take top three results and append to card on right for recommendations+
           //on click function for each recommendation on image
           //further query for omdb to produce the results in movie image
           //rinse and repeat
@@ -154,9 +154,9 @@
       console.log(genreSearch);
   
       // https://api.themoviedb.org/3/discover/movie?api_key=7bc99c9ee75ec56de6b188d9007199dc&with_genres=28&sort_by=vote_average.desc&sort_by=vote_count.desc
-      var tmdbQuery = `https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?apikey=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc`;
+      var tmdbQuery = `https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc$page1`;
   
-      console.log(`https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?&apikey=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc`)
+      console.log(`https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?&api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc$page1`)
 
       tmdbQuery = tmdbQuery.trim();
   
@@ -167,11 +167,57 @@
         //grab the information and set it to variables
         .then(function (response) {
           console.log(response);
+        // log responses of title, image, rating
+        //results[0].title
+        //results[0].poster_path
+        //results[0].vote_average
+
+        var sideTitle0 = response.results[0].title;
+        var sidePoster0 = response.results[0].poster_path;
+        var sideVote0 =  response.results[0].vote_average;
+        var sideTitle1 = response.results[1].title;
+        var sidePoster1 = response.results[1].poster_path;
+        var sideVote1 =  response.results[1].vote_average;
+        var sideTitle2 = response.results[2].title;
+        var sidePoster2 = response.results[2].poster_path;
+        var sideVote2 =  response.results[2].vote_average;
+
+        var titleDisplay0 = $("<p>").text(sideTitle0);
+        var imgDisplay0 = $("<img>").attr("src", `http://image.tmdb.org/t/p/w185/${sidePoster0}`);
+        var ratingDisplay0 = $("<p>").text("Rating: " + sideVote0);
+        var titleDisplay1 = $("<p>").text(sideTitle1);
+        var imgDisplay1 = $("<img>").attr("src", `http://image.tmdb.org/t/p/w185/${sidePoster1}`);
+        var ratingDisplay1 = $("<p>").text("Rating: " + sideVote1);
+        var titleDisplay2 = $("<p>").text(sideTitle2);
+        var imgDisplay2 = $("<img>").attr("src", `http://image.tmdb.org/t/p/w185/${sidePoster2}`);
+        var ratingDisplay2 = $("<p>").text("Rating: " + sideVote2);
+
+        (imgDisplay0).addClass("searchOmdb");
+        (imgDisplay1).addClass("searchOmdb");
+        (imgDisplay2).addClass("searchOmdb");
+
+        $("#side-display").append(
+          titleDisplay0,
+          imgDisplay0,
+          ratingDisplay0,
+          titleDisplay1,
+          imgDisplay1,
+          ratingDisplay1,
+          titleDisplay2,
+          imgDisplay2,
+          ratingDisplay2
+        );
+
+
+        
+
+
     });
   });
   
   //get response from tmdb
-  //take response, randomize indexes again for display on the page
+
+  //take response, randomize indices again for display on the page
   //append to side bar
   //clear side bar for each search after appending
   //set click fuction to each image
