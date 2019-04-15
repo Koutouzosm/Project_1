@@ -154,9 +154,11 @@
       console.log(genreSearch);
   
       // https://api.themoviedb.org/3/discover/movie?api_key=7bc99c9ee75ec56de6b188d9007199dc&with_genres=28&sort_by=vote_average.desc&sort_by=vote_count.desc
-      var tmdbQuery = `"https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?apikey=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc"`;
+      var tmdbQuery = `https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?apikey=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc`;
   
-      console.log(`"https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?&apikey=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc"`)
+      console.log(`https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?&apikey=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc`)
+
+      tmdbQuery = tmdbQuery.trim();
   
       $.ajax({
           url: tmdbQuery,
