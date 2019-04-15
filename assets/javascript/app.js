@@ -5,12 +5,16 @@
     var randomGenre
     var recString = ""
     var tmdbKey = "7bc99c9ee75ec56de6b188d9007199dc"
+
+    $("#sec-id").hide();
   
   //on click button to search movie via api cal'
     $("#search-button").on("click", function (event) {
       event.preventDefault()
       $("#movie-title, #movie-display, #data-display").empty();
       var movie = $("#user-input").val();
+
+      $("#sec-id").show();
   
       var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=d62e414d";
   

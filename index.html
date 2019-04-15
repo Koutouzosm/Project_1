@@ -9,17 +9,18 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
   <title>Movie App</title>
 </head>
 
-<body class="bdyImg">
+<body class="bdyImg back-row-toggle splat-toggle">
 
-
-  <h1 class="text-center colorCard">Movie App</h1>
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
 
   <!-- left column search area -->
   <main class="container-fluid text-center" id="maincss">
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-12 col-md-3">
         <div class="card cardCss">
           <h4 class="card-header">
@@ -47,9 +48,10 @@
         </div>
       </div>
 
+      <canvas id=c></canvas>
 
       <!-- right section this section is the result endpoint -->
-      <section class="col-12 col-md-6">
+      <section class="col-12 col-md-6" id="sec-id">
         <div class="card movieInfo text-light">
             <a href="#" class="btn btn-primary" id="rec-button">Go somewhere</a>
           <h4 class="card-header" id="movie-title">
@@ -79,12 +81,17 @@
 
 
 
-
+  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="assets/javascript/animate.js"></script>
   <script src="assets/javascript/app.js"></script>
+  
+
+
+
 </body>
 
 </html>
