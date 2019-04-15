@@ -94,6 +94,7 @@
     });
     //call api for tmdb to search descending rating of genre with button click
     $("#rec-button").on("click", function (event) {
+      $("#side-display").empty();
       event.preventDefault();
       console.log("clicked")
   
@@ -150,18 +151,19 @@
         recString = "12";}
   
   
-      console.log(recString);
-      console.log(genreSearch);
+      // console.log(recString);
+      // console.log(genreSearch);
   
       // https://api.themoviedb.org/3/discover/movie?api_key=7bc99c9ee75ec56de6b188d9007199dc&with_genres=28&sort_by=vote_average.desc&sort_by=vote_count.desc
-      var tmdbQuery = `https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc$page1`;
+      var tmdbQuery1 = `https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc`
   
-      console.log(`https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?&api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc$page1`)
+  
+      console.log(`https://alex-rosencors.herokuapp.com?url=https://api.themoviedb.org/3/discover/movie?&api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc`)
 
-      tmdbQuery = tmdbQuery.trim();
+      // tmdbQuery = tmdbQuery.trim();
   
       $.ajax({
-          url: tmdbQuery,
+          url: tmdbQuery1,
           method: "GET"
         })
         //grab the information and set it to variables
@@ -171,16 +173,24 @@
         //results[0].title
         //results[0].poster_path
         //results[0].vote_average
+        var  tmdbIndex = Math.floor(Math.random() * response.results.length);
+        var  tmdbIndex1 = Math.floor(Math.random() * response.results.length);
+        var  tmdbIndex2 = Math.floor(Math.random() * response.results.length);
+        console.log(tmdbIndex);
+        console.log(tmdbIndex1);
+        console.log(tmdbIndex2);
 
-        var sideTitle0 = response.results[0].title;
-        var sidePoster0 = response.results[0].poster_path;
-        var sideVote0 =  response.results[0].vote_average;
-        var sideTitle1 = response.results[1].title;
-        var sidePoster1 = response.results[1].poster_path;
-        var sideVote1 =  response.results[1].vote_average;
-        var sideTitle2 = response.results[2].title;
-        var sidePoster2 = response.results[2].poster_path;
-        var sideVote2 =  response.results[2].vote_average;
+        // if (tmdbIndex !== tmdbIndex1 !== tmdbIndex2){
+
+        var sideTitle0 = response.results[tmdbIndex].title;
+        var sidePoster0 = response.results[tmdbIndex].poster_path;
+        var sideVote0 =  response.results[tmdbIndex].vote_average;
+        var sideTitle1 = response.results[tmdbIndex1].title;
+        var sidePoster1 = response.results[tmdbIndex1].poster_path;
+        var sideVote1 =  response.results[tmdbIndex1].vote_average;
+        var sideTitle2 = response.results[tmdbIndex2].title;
+        var sidePoster2 = response.results[tmdbIndex2].poster_path;
+        var sideVote2 =  response.results[tmdbIndex2].vote_average;
 
         var titleDisplay0 = $("<p>").text(sideTitle0);
         var imgDisplay0 = $("<img>").attr("src", `http://image.tmdb.org/t/p/w185/${sidePoster0}`);
@@ -207,13 +217,20 @@
           imgDisplay2,
           ratingDisplay2
         );
+      // } else {
+      //   omdbIndex = Math.floor(Math.random() * response.results.length)
+      //   omdbIndex1 = Math.floor(Math.random() * response.results.length)
+      //   omdbIndex2 = Math.floor(Math.random() * response.results.length)
+      // }
 
+    
 
-        
 
 
     });
   });
+
+  
   
   //get response from tmdb
 
