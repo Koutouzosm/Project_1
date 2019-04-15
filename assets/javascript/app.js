@@ -246,7 +246,15 @@
   //query abck to omdb
   //display new results to the main display div
   //at some point, eliminate button on right card and tie it to a document event
-  
+    $(".searchOmdb").on("click", function(event){
+      event.preventDefault();
+      $("#side-display").empty();
+      $("#movie-title, #movie-display, #data-display").empty();
+
+
+
+
+    })
   
   });
     //leave me here!
