@@ -8,30 +8,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <link rel="stylesheet" href="assets/css/animate.css">
-  <title>Movie App</title>
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Movie Flow</title>
 </head>
 
-<body class="bdyImg back-row-toggle splat-toggle">
+<body class="back-row-toggle splat-toggle">
 
-    <div class="rain front-row"></div>
-    <div class="rain back-row"></div>
+  <!-- Canvas  -->
+  <div class="rain front-row"></div>
+  <div class="rain back-row"></div>
+
+
+  <div class="container" id="titleCss">
+    <h1 class="text-center animated flipInX delay-1s" id="hcss"><span id="movie">Movie</span> <span id="sep">~</span> <span id="flow">Flow</span></h1>
+  </div>
 
   <!-- left column search area -->
   <main class="container-fluid text-center" id="maincss">
     <div class="row justify-content-center">
       <div class="col-12 col-md-3">
-        <div class="card cardCss">
+        <div class="cardCss">
           <h4 class="card-header">
             Movie Search
           </h4>
           <form class="card-body text-center">
             <form id="search-form">
               <div class="form-group text-center">
-                <label for="search-input">Searh by Movie title, Actor, or Quote</label>
-                <input class="form-control" type="text" id="user-input" placeholder="Movie title, Actor, Quote" />
-                <button type="button" id="search-button" class="btn btn-primary btn-lg btn-block">Search</button>
+                <label for="search-input">Search by Movie!</label>
+                <input class="form-control" type="text" id="user-input" placeholder="Movie title"/>
+                <button type="button" id="search-button" class="btn btn-secondary btn-lg btn-block">Search</button>
 
                 <div class="btn-group dropright" id="dropButton">
                   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
@@ -42,7 +50,6 @@
                     <!-- Dropdown menu links -->
                   </div>
                 </div>
-
               </div>
             </form>
         </div>
@@ -51,42 +58,34 @@
       <canvas id=c></canvas>
 
       <!-- right section this section is the result endpoint -->
-      <section class="col-12 col-md-6" id="sec-id">
+      <container class="col-12 col-md-6 container-fluid justify-content-between" id="sec-id">
         <div class="card movieInfo text-light">
-          <h4 class="card-header" id="movie-title">
-          </h4>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6 divImg" id="movie-display">
-
-              </div>
-              <div class="col-6" id="data-display">
-
+            <h4 class="card-header" id="movie-title">
+            </h4>
+            <div class="card-body animated tada">
+              <div class="row">
+                <div class="col-6 divImg" id="movie-display"></div>
+                <div class="col-6" id="data-display">
+                </div>
               </div>
             </div>
-          </div>
         </div>
-      </section>
-      
+      </container>
+      <div class="col-md-3" id="div-hide">
+        <div id="side-display" style="overflow-y: scroll; max-height:400px"></div>
+      </div>
+    </div>
+    <div class="footer text-center">
+      <p class="small">© Copyright 2019</p>
+    </div>
   </main>
 
-
-
-
-
-
-
-  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="assets/javascript/animate.js"></script>
   <script src="assets/javascript/app.js"></script>
-  
-
-
-
+  <script src="assets/javascript/animate.js"></script>
 </body>
 
 </html>
