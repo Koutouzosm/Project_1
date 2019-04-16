@@ -2,9 +2,6 @@ $(document).ready(function () {
 
   var genreSearch = ""
   var genre0
-  // var tmdbGenreArray0 
-  // var tmdbGenreArray1
-  // var tmdbGenreArray2
   var randomGenre
   var recString = ""
   var tmdbKey = "7bc99c9ee75ec56de6b188d9007199dc"
@@ -12,6 +9,7 @@ $(document).ready(function () {
   var title0;
   var title1;
   var title2;
+  var pageArray;
 
 
 
@@ -19,18 +17,23 @@ $(document).ready(function () {
   $("#sec-id").hide();
   $("#div-hide").hide();
 
-  //on click button to search movie via api cal'
+  //on click button to search movie via api call
   $("#search-button").on("click", function (event) {
     event.preventDefault()
+    //empty the content that it still there and the array that contains movie titles. search by the title that gets enetered into the user input id'd form.
     $("#movie-title, #movie-display, #data-display, #user-input").empty();
     recArray = [];
     var movie = $("#user-input").val();
- 
 
     $("#sec-id").show();
     $("#div-hide").show();
     var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=d62e414d";
 
+    if(movie === ""){
+      $("#data-display").append("You've entered nothing. Please search for a movie");
+      var nothingImg = $("<img>").attr("src", "assets/images/nothing_movie.png");
+      $("#movie-display").append(nothingImg);
+    } else {
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -51,16 +54,15 @@ $(document).ready(function () {
         //takes the response and goes down the object to genre, takes only the first string entry prior to the first ",""
         genre0 = response.Genre.split(", ");
         console.log(genre0)
-        $("#user-input").val("")
+        $("#user-input").val("");
 
+
+        //randomize the responses to genre0 to give further variety to the results
         var randomIndex = Math.floor(Math.random() * genre0.length);
 
 
         randomGenre = genre0[randomIndex];
         console.log(randomGenre);
-        // console.log(genre0[i]);
-
-        //save genre.split(",") var
 
 
         //set each one to tags and save them in variables
@@ -93,41 +95,20 @@ $(document).ready(function () {
           rtP,
         );
 
+        //Run the function for side bar recommendations
         getRelatedMovies();
-
-        //image+
-        //title
-        //var rt
-        //x3
-
-        //var genre up top+
-
-        // /discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc
-        // https://api.themoviedb.org/3/movie/550?api_key=7bc99c9ee75ec56de6b188d9007199dc+
-        //once we got it goin, nix the button and make it fluid movement
-        //take top three results and append to card on right for recommendations+
-        //on click function for each recommendation on image
-        //further query for omdb to produce the results in movie image
-        //rinse and repeat
       });
-
+    };
   });
   // GET RELATED MOVIES
   function getRelatedMovies() {
     $("#side-display").empty();
     console.log("clicked")
 
-    //save data from genre0 in a variable as lower case
+    //save data from randomGenre in a variable as lower case
     genreSearch = randomGenre.toLowerCase();
     console.log(genreSearch);
 
-
-    // const genreObj = {
-    //   animated: 16,
-    //   action: 28,
-    //   horror: 27,
-    // }
-    // console.log(genre[genreSearch])
 
     //conditional statement to convert the genre from omdb's format to tmdb's format for genres
     if (genreSearch === "action") {
@@ -170,18 +151,18 @@ $(document).ready(function () {
       recString = "12";
     }
 
+    //randomize the page results on each call for further variety of selection
+    pageArray = [1, 2, 3];
 
-    // console.log(recString);
-    // console.log(genreSearch);
+    var pageArrayRandom = Math.floor(Math.random() * pageArray.length) + 1;
+    console.log(pageArrayRandom)
 
-    // https://api.themoviedb.org/3/discover/movie?api_key=7bc99c9ee75ec56de6b188d9007199dc&with_genres=28&sort_by=vote_average.desc&sort_by=vote_count.desc
-    var tmdbQuery1 = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc`
 
-    //maybe add multiple calls for multiple pages
+    var tmdbQuery1 = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc&page=${pageArrayRandom}`
 
-    console.log(`https://api.themoviedb.org/3/discover/movie?&api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc`)
 
-    // tmdbQuery = tmdbQuery.trim();
+    console.log(`https://api.themoviedb.org/3/discover/movie?&api_key=${tmdbKey}&with_genres=${recString}&sort_by=vote_average.desc&sort_by=vote_count.desc&page=${pageArrayRandom}`)
+
 
     $.ajax({
         url: tmdbQuery1,
@@ -190,10 +171,7 @@ $(document).ready(function () {
       //grab the information and set it to variables
       .then(function (response) {
         console.log(response);
-        // log responses of title, image, rating
-        //results[0].title
-        //results[0].poster_path
-        //results[0].vote_average
+        //randomize the index that's getting picked and store it in a variable
         var tmdbIndex = Math.floor(Math.random() * response.results.length);
         var tmdbIndex1 = Math.floor(Math.random() * response.results.length);
         var tmdbIndex2 = Math.floor(Math.random() * response.results.length);
@@ -201,46 +179,51 @@ $(document).ready(function () {
         console.log(tmdbIndex1);
         console.log(tmdbIndex2);
 
-        //lol this shit's so dumb, but it works
-        if (tmdbIndex === tmdbIndex1){
+        //Gate the results to not be equal to each other in the most convoluted way posssible.
+        if (tmdbIndex === tmdbIndex1) {
           tmdbIndex = Math.floor(Math.random() * response.results.length)
-        } else{
+        } else {
           console.log(false);
         };
-        if (tmdbIndex === tmdbIndex2){
+        if (tmdbIndex === tmdbIndex2) {
           tmdbIndex = Math.floor(Math.random() * response.results.length)
-        } else{
+        } else {
           console.log(false);
         };
-        if (tmdbIndex1 === tmdbIndex2){
+        if (tmdbIndex1 === tmdbIndex2) {
           tmdbIndex1 = Math.floor(Math.random() * response.results.length)
-        } else{
+        } else {
+          console.log(false);
+        };
+        if (tmdbIndex === tmdbIndex1) {
+          tmdbIndex = Math.floor(Math.random() * response.results.length)
+        } else {
+          console.log(false);
+        };
+        if (tmdbIndex === tmdbIndex2) {
+          tmdbIndex = Math.floor(Math.random() * response.results.length)
+        } else {
+          console.log(false);
+        };
+        if (tmdbIndex1 === tmdbIndex2) {
+          tmdbIndex1 = Math.floor(Math.random() * response.results.length)
+        } else {
           console.log(false);
         };
 
-        // if (tmdbIndex !== tmdbIndex1 !== tmdbIndex2){
-
+        //need to further randomize by genre on the second request to omdb down the road. 
         var sideTitle0 = response.results[tmdbIndex].title;
         var sidePoster0 = response.results[tmdbIndex].poster_path;
         var sideVote0 = response.results[tmdbIndex].vote_average;
-        // var sideGenre0 = response.results[tmdbIndex].genre_ids;
         var sideTitle1 = response.results[tmdbIndex1].title;
         var sidePoster1 = response.results[tmdbIndex1].poster_path;
         var sideVote1 = response.results[tmdbIndex1].vote_average;
-        // var sideGenre1 = response.results[tmdbIndex1].genre_ids;
         var sideTitle2 = response.results[tmdbIndex2].title;
         var sidePoster2 = response.results[tmdbIndex2].poster_path;
         var sideVote2 = response.results[tmdbIndex2].vote_average;
-        // var sideGenre2 = response.results[tmdbIndex2].genre_ids;
-        // console.log(sideGenre1);
-        // tmdbGenreArray0 = response.results.sideGenre0.split(", ")[0];
-        // tmdbGenreArray1 = response.results.sideGenre1.split(", ")[0];
-        // tmdbGenreArray2 = response.results.sideGenre2.split(", ")[0];
-        // console.log(tmdbGenreArray0);
-        // console.log(tmdbGenreArray1);
-        // console.log(tmdbGenreArray2);
 
 
+        //set to tags and append to page
         var titleDisplay0 = $("<h4>").text(sideTitle0);
         var imgDisplay0 = $("<img>").attr("src", `http://image.tmdb.org/t/p/w185/${sidePoster0}`);
         var ratingDisplay0 = $("<p>").text("Rating: " + sideVote0);
@@ -264,17 +247,13 @@ $(document).ready(function () {
           imgDisplay2,
           ratingDisplay2
         );
-        // } else {
-        //  omdbIndex = Math.floor(Math.random() * response.results.length)
-        //  omdbIndex1 = Math.floor(Math.random() * response.results.length)
-        //  omdbIndex2 = Math.floor(Math.random() * response.results.length)
-        // }
+
+        //create an array to push the titles of the movies into. Store the indices for each into variables. Add a class for tying the click functions together on each image. Add an id attribute to each one individually of it's title so we can use that information on click to put into the next api call.
         recArray.push(sideTitle0, sideTitle1, sideTitle2);
         console.log(recArray);
         title0 = recArray[0];
         title1 = recArray[1];
         title2 = recArray[2];
-        console.log(title1);
 
         (imgDisplay0).addClass("searchOmdb");
         (imgDisplay1).addClass("searchOmdb");
@@ -283,20 +262,11 @@ $(document).ready(function () {
         $(imgDisplay0).attr("id", `${title0}`);
         $(imgDisplay1).attr("id", `${title1}`);
         $(imgDisplay2).attr("id", `${title2}`);
-
+        
       });
   }
 
-  //get response from tmdb
-
-  //take response, randomize indices again for display on the page+
-  //append to side bar+
-  //clear side bar for each search after appending+
-  //set click fuction to each image+
-  //take value for which we want to search(genre for each, potentially randomized again)
-  //query abck to omdb
-  //display new results to the main display div
-  //at some point, eliminate button on right card and tie it to a document event+
+  //establish on click function for each image in the side display of recs. they're tied together by the searchOmdb class. empty all the previously filled content. store the search query into a variable that's looking for the id attribute we assigned above.
   $("#side-display").on("click", ".searchOmdb", function (event) {
     event.preventDefault();
     $("#side-display").empty();
@@ -354,6 +324,7 @@ $(document).ready(function () {
           imdbP,
           rtP,
         );
+        //empty out the array with movie titles
         recArray = [];
         getRelatedMovies();
 
