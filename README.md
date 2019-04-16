@@ -3,7 +3,7 @@
 We've made a website application that can help you search for movie information and it recommend you three movies that are of the same genre. The intial search is using an API call from OMDB and the recommendations are being given from TMDB. When the web application is looking for a recommended movie, it pulls randomly from an array of the genres of the movie you are searching for to recommend something similar.
 
 ##
-![alt text](assets/images/Screanshot.png)
+![alt text]("https://raw.githubusercontent.com/Koutouzosm/Project_1/master/assets/images/Screanshot.png")
 
 
 ## Technologies Used
